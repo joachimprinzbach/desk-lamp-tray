@@ -21,7 +21,7 @@ const winURL = process.env.NODE_ENV === 'development'
   : `file://${__dirname}/index.html`
 
 // nativeTheme.on('updated', function theThemeHasChanged () {
-  // updateMyAppTheme(nativeTheme.shouldUseDarkColors)
+// updateMyAppTheme(nativeTheme.shouldUseDarkColors)
 // })
 
 function createWindow () {
@@ -88,11 +88,13 @@ ipcMain.on('show-window', () => {
 app.dock.hide()
 
 app.on('ready', () => {
+  lookupLights()
   createTray()
   createWindow()
-  lookupLights()
   globalShortcut.register('CommandOrControl+o', () => {
-    toggleLight()
+    if (_light) {
+      _light.setPower(!on)
+    }
   })
 })
 
@@ -114,21 +116,11 @@ const lookupLights = () => {
   look.on('detected', (light) => {
     if (light.model === 'lamp2') {
       _light = light
-      this._light.on('stateUpdate', (updatedLightInfo) => {
+      _light.on('stateUpdate', (updatedLightInfo) => {
         on = updatedLightInfo.power
       })
     } else {
       console.warn('Unsupported model detected: ' + light.model)
     }
   })
-}
-
-const toggleLight = () => {
-  if (on === false) {
-    _light.setPower('on')
-    on = true
-  } else {
-    _light.setPower('off')
-    on = false
-  }
 }
