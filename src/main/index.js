@@ -112,7 +112,14 @@ const lookupLights = () => {
   let look = new Lookup()
 
   look.on('detected', (light) => {
-    _light = light
+    if (light.model === 'lamp2') {
+      _light = light
+      this._light.on('stateUpdate', (updatedLightInfo) => {
+        on = updatedLightInfo.power
+      })
+    } else {
+      console.warn('Unsupported model detected: ' + light.model)
+    }
   })
 }
 

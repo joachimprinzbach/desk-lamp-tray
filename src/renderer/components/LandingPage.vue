@@ -35,7 +35,8 @@
         </div>
       </div>
       <div class="connection-problem" v-if="status !== 'positive'">
-        <h3>You seem to have connection problems. Make sure that <a href="https://www.yeelight.com/faqs/lan_control">LAN control is enabled for your lamp</a>.</h3>
+        <h3>You seem to have connection problems. Make sure that <a href="https://www.yeelight.com/faqs/lan_control">LAN
+          control is enabled for your lamp</a>.</h3>
       </div>
     </div>
   </main>
@@ -76,8 +77,8 @@
     padding: 8px 16px;
     background-color: red;
   }
-
 </style>
+
 <script>
   import {Lookup} from 'node-yeelight-wifi'
 
@@ -126,13 +127,8 @@
         this.light.setBright(this.brightness)
       },
       toggleColor () {
-        /* let minGreen = 159.06459355853457
-        let maxGreen = 223.95190336102957
-        let maxDistance = maxGreen - minGreen
-        let newColor = this.brightness
-        let distance = maxGreen - newColor
-        let percentage = distance / maxDistance
-        this.light.setRGB([255, 223, 198]) */
+        let number = this.color * 2300 / 100
+        this.light.setCT(number + 2500)
       },
       updateState: async function (light) {
         let minGreen = 159.06459355853457
@@ -141,10 +137,6 @@
         let newGreen = light.rgb.g
         let distance = maxGreen - newGreen
         let percentage = distance / maxDistance
-        console.log(percentage)
-        console.log(newGreen)
-        console.log(distance)
-        console.log(maxDistance)
         this.power = light.power
         this.brightness = light.bright
         this.color = percentage * 100
