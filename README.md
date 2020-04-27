@@ -10,7 +10,7 @@
 
 ### Installation 
 
-Simply grad the [latest release](https://github.com/joachimprinzbach/desk-lamp-tray/releases) as pkg and install it.  
+Simply grab the [latest release](https://github.com/joachimprinzbach/desk-lamp-tray/releases) as pkg and install it.  
 
 ### Dev Setup
 
