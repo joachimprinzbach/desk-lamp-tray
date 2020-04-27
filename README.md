@@ -8,7 +8,13 @@
 
 ![Screenshot](/screenshot.png)
 
-#### Build Setup
+### Installation 
+
+Simply grad the [latest release](https://github.com/joachimprinzbach/desk-lamp-tray/releases) as pkg and install it.  
+
+### Dev Setup
+
+Steps if you want to hack on the project or run it from sources.
 
 ``` bash
 # install dependencies
